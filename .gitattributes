@@ -1,0 +1,19 @@
+# Force LF line endings for all shell scripts and text files
+# so they execute correctly on Linux/Docker regardless of the OS used to edit them.
+
+* text=auto
+
+# Shell scripts must always use LF
+*.sh        text eol=lf
+train_wake_word text eol=lf
+run_recorder.sh text eol=lf
+
+# CLI scripts (no extension) — force LF
+cli/*       text eol=lf
+
+# Python and other text files
+*.py        text eol=lf
+*.txt       text eol=lf
+*.md        text eol=lf
+dockerfile  text eol=lf
+.bashrc     text eol=lf
