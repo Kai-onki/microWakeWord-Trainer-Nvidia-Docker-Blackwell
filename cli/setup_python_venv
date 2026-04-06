@@ -43,9 +43,13 @@ fi
 
 cd "${DATA_DIR}"
 
+# Apply Blackwell GPU Fixes to the current environment
+chmod +x "${PROGDIR}/fix_blackwell_gpu.sh"
+source "${PROGDIR}/fix_blackwell_gpu.sh"
+
 [ -z "${GPU}" ] && {
     GPU=false
-    [ -c /dev/nvidiactl ] && {
+    [ -e /dev/nvidiactl ] && {
         GPU=true
         echo "   Nvidia GPU detected"
     }
@@ -165,7 +169,7 @@ if ${GPU} && ${IS_BLACKWELL} ; then
     # Blackwell path: prefer nightly TF while upstream stable wheels catch up.
     DEFAULT_TF_SPEC="tf-nightly${tfgpu}"
     # Let tf-nightly resolve a compatible TensorBoard dependency by default.
-    default_tensorboard_specs=()
+    default_tensorboard_specs=( "tensorboard" "tensorboard-data-server" )
 else
     DEFAULT_TF_SPEC="tensorflow${tfgpu}==2.20.0"
     default_tensorboard_specs=( "tensorboard==2.20.0" "tensorboard-data-server==0.7.2" )

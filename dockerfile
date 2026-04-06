@@ -36,5 +36,8 @@ RUN chmod -R a+x /root/mww-scripts/cli
 # Static UI for recorder
 COPY --chown=root:root --chmod=0644 static/index.html /root/mww-scripts/static/index.html
 
+# Run the GPU fix script to ensure Blackwell visibility at runtime
+ENTRYPOINT ["/root/mww-scripts/cli/fix_blackwell_gpu.sh"]
+
 # recorder server
 CMD ["/bin/bash", "-lc", "/root/mww-scripts/run_recorder.sh"]

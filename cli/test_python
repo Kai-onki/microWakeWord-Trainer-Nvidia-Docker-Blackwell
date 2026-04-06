@@ -8,6 +8,8 @@ source "${PROGDIR}/shell.functions"
 
 source "${DATA_DIR}/.venv/bin/activate"
 
+source "${PROGDIR}/fix_blackwell_gpu.sh"
+
 export TF_CPP_MIN_LOG_LEVEL=9
 export GLOG_minloglevel=2
 export GRPC_VERBOSITY="ERROR"
